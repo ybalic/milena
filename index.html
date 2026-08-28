@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#070608">
+  <meta name="description" content="Grupo de Prévias e Conteúdo Exclusivo da Milena. Acesso direto e VIP.">
+  <title>Milena • Grupo de Prévias</title>
+
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <!-- Canvas para partículas de corações flutuantes -->
+  <canvas id="hearts-canvas" aria-hidden="true"></canvas>
+
+  <!-- Luzes de fundo e atmosfera ambient glow -->
+  <div class="ambient-glow ambient-glow-top" aria-hidden="true"></div>
+  <div class="ambient-glow ambient-glow-center" aria-hidden="true"></div>
+  <div class="ambient-glow ambient-glow-bottom" aria-hidden="true"></div>
+
+  <!-- Container Principal Mobile-First -->
+  <main class="page-wrapper">
+    <div class="pressel-card">
+
+      <!-- Seção da Foto com Selo Verificado -->
+      <section class="profile-section">
+        <div class="avatar-container">
+          <div class="avatar-glow-ring"></div>
+          <div class="avatar-wrapper">
+            <img 
+              src="cropped_circle_image.png" 
+              alt="Milena" 
+              class="avatar-img" 
+              id="model-image" 
+              loading="eager"
+              onerror="this.onerror=null; this.src='assets/cropped_circle_image.png';"
+            />
+          </div>
+          <!-- Selo Verificado estilo Instagram oficial -->
+          <div class="verified-badge" title="Perfil Verificado" aria-label="Perfil Verificado">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M10.5213 2.62368C11.3147 1.75254 12.6853 1.75254 13.4787 2.62368L14.4989 3.74391C14.8964 4.18042 15.4674 4.41686 16.0537 4.38793L17.5583 4.31371C18.7285 4.25597 19.744 5.27146 19.6863 6.44171L19.6121 7.94627C19.5831 8.5326 19.8196 9.10364 20.2561 9.50106L21.3763 10.5213C22.2475 11.3147 22.2475 12.6853 21.3763 13.4787L20.2561 14.4989C19.8196 14.8964 19.5831 15.4674 19.6121 16.0537L19.6863 17.5583C19.744 18.7285 18.7285 19.744 17.5583 19.6863L16.0537 19.6121C15.4674 19.5831 14.8964 19.8196 14.4989 20.2561L13.4787 21.3763C12.6853 22.2475 11.3147 22.2475 10.5213 21.3763L9.50106 20.2561C9.10364 19.8196 8.5326 19.5831 7.94627 19.6121L6.44171 19.6863C5.27146 19.744 4.25597 18.7285 4.31371 17.5583L4.38793 16.0537C4.41686 15.4674 4.18042 14.8964 3.74391 14.4989L2.62368 13.4787C1.75254 12.6853 1.75254 11.3147 2.62368 10.5213L3.74391 9.50106C4.18042 9.10364 4.41686 8.5326 4.38793 7.94627L4.31371 6.44171C4.25597 5.27146 5.27146 4.25597 6.44171 4.31371L7.94627 4.38793C8.5326 4.41686 9.10364 4.18042 9.50106 3.74391L10.5213 2.62368Z"
+                fill="#0095F6" />
+              <path d="M9.75 12.25L11.5 14L15.25 9.75" stroke="white" stroke-width="2.2" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </div>
+        </div>
+      </section>
+
+      <!-- Seção de Títulos -->
+      <section class="headline-section">
+        <h1 class="main-title">Milena Brenda</h1>
+        <div class="subtitle-wrapper">
+          <span class="live-dot" aria-hidden="true"></span>
+          <p class="subtitle">Milena está na sua região agora.</p>
+        </div>
+      </section>
+
+      <!-- Seção de Botões CTAs -->
+      <section class="actions-section">
+        <!-- BOTÃO 1 -->
+        <a href="#previas" class="cta-btn cta-btn-primary" id="btn-previas" data-link-action="previas">
+          <span class="btn-shine" aria-hidden="true"></span>
+          <span class="btn-text">GRUPO DE PRÉVIAS</span>
+          <svg class="btn-icon" viewBox="0 0 24 24" width="20" height="20" fill="none"
+            xmlns="http://www.w3.org/2000/svg">
+            <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+              stroke-linejoin="round" />
+          </svg>
+        </a>
+
+        <!-- BOTÃO 2 -->
+        <a href="#exclusivo" class="cta-btn cta-btn-secondary" id="btn-exclusivo" data-link-action="exclusivo">
+          <span class="btn-shine" aria-hidden="true"></span>
+          <span class="btn-text">CONTEÚDO EXCLUSIVO</span>
+          <svg class="btn-icon" viewBox="0 0 24 24" width="20" height="20" fill="none"
+            xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M12 15V17M6 21H18C19.1046 21 20 20.1046 20 19V11C20 9.89543 19.1046 9 18 9H6C4.89543 9 4 9.89543 4 11V19C4 20.1046 4.89543 21 6 21ZM16 9V7C16 4.79086 14.2091 3 12 3C9.79086 3 8 4.79086 8 7V9H16Z"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+          </svg>
+        </a>
+      </section>
+
+      <!-- Rodapé / Micro Trust Badge -->
+      <footer class="trust-footer">
+        <div class="secure-badge">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+            <path
+              d="M12 1L3 5V11C3 16.55 6.84 21.74 12 23C17.16 21.74 21 16.55 21 11V5L12 1ZM10 16.5L6 12.5L7.41 11.09L10 13.67L16.59 7.08L18 8.5L10 16.5Z" />
+          </svg>
+          <span>Ambiente Seguro & Conexão Criptografada</span>
+        </div>
+      </footer>
+
+    </div>
+  </main>
+
+  <!-- Script JS com Sistema de Partículas e Efeitos -->
+  <script src="script.js"></script>
+</body>
+
+</html>
