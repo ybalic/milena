@@ -1,114 +1,402 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <meta name="theme-color" content="#070608">
-  <meta name="description" content="Grupo de Prévias e Conteúdo Exclusivo da Milena. Acesso direto e VIP.">
-  <title>Milena • Grupo de Prévias</title>
+  <title>Grupo das casadas</title>
+  
+  <!-- Meta tags SEO e Open Graph -->
+  <meta name="description" content="Acesse o Grupo das casadas com exclusividade no Telegram.">
+  <meta name="theme-color" content="#000000">
+  <meta property="og:title" content="Grupo das casadas">
+  <meta property="og:description" content="Participe do grupo oficial no Telegram.">
+  <meta property="og:image" content="profile.png">
+  <meta property="og:type" content="website">
 
-  <!-- Google Fonts: Plus Jakarta Sans -->
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="profile.png">
+
+  <!-- Google Fonts: Plus Jakarta Sans & Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap"
-    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
-  <!-- Stylesheet -->
-  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Reset & Base */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background-color: #000000;
+      color: #ffffff;
+      font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 24px 16px;
+      position: relative;
+      overflow-x: hidden;
+      background-image: 
+        radial-gradient(circle at 50% 0%, rgba(35, 35, 40, 0.4) 0%, rgba(0, 0, 0, 0.95) 70%),
+        radial-gradient(circle at 50% 100%, rgba(20, 20, 22, 0.5) 0%, rgba(0, 0, 0, 1) 80%);
+    }
+
+    /* Ambient Subtle Grid / Glow */
+    .ambient-glow {
+      position: absolute;
+      top: 15%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 320px;
+      height: 320px;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.04) 0%, rgba(0, 0, 0, 0) 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Presell Main Card */
+    .presell-card {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 420px;
+      background: rgba(10, 10, 10, 0.75);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      border-radius: 28px;
+      padding: 40px 24px 32px;
+      box-shadow: 
+        0 25px 60px -15px rgba(0, 0, 0, 0.9),
+        0 0 0 1px rgba(255, 255, 255, 0.03),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      animation: cardAppear 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes cardAppear {
+      from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.98);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    /* Profile Avatar Container */
+    .avatar-wrapper {
+      position: relative;
+      margin-bottom: 22px;
+      display: inline-block;
+    }
+
+    .avatar-glow {
+      position: absolute;
+      inset: -6px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.02));
+      opacity: 0.6;
+      filter: blur(8px);
+      z-index: 1;
+      animation: pulseGlow 3s ease-in-out infinite alternate;
+    }
+
+    @keyframes pulseGlow {
+      0% { transform: scale(0.98); opacity: 0.4; }
+      100% { transform: scale(1.05); opacity: 0.8; }
+    }
+
+    .avatar-img {
+      position: relative;
+      z-index: 2;
+      width: 108px;
+      height: 108px;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+      background-color: #111;
+    }
+
+    /* Online status indicator */
+    .status-badge {
+      position: absolute;
+      bottom: 2px;
+      right: 4px;
+      z-index: 3;
+      width: 18px;
+      height: 18px;
+      background-color: #10b981;
+      border: 3px solid #0a0a0a;
+      border-radius: 50%;
+      box-shadow: 0 0 12px rgba(16, 185, 129, 0.8);
+    }
+
+    .status-badge::after {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      border-radius: 50%;
+      border: 1.5px solid #10b981;
+      animation: ringPulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+
+    @keyframes ringPulse {
+      0% { transform: scale(1); opacity: 0.9; }
+      100% { transform: scale(1.8); opacity: 0; }
+    }
+
+    /* Micro tag / Pill */
+    .exclusive-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 12px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 100px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.65);
+      margin-bottom: 14px;
+    }
+
+    .exclusive-tag .tag-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #10b981;
+    }
+
+    /* Main Title */
+    .group-title {
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: #ffffff;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      line-height: 1.2;
+    }
+
+    /* Verified Badge */
+    .verified-icon {
+      width: 22px;
+      height: 22px;
+      fill: #229ED9;
+      flex-shrink: 0;
+    }
+
+    /* Description */
+    .group-subtitle {
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.5;
+      color: rgba(255, 255, 255, 0.55);
+      max-width: 320px;
+      margin-bottom: 30px;
+    }
+
+    /* CTA Button */
+    .cta-btn {
+      position: relative;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 18px 24px;
+      background: #ffffff;
+      color: #000000;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      border-radius: 16px;
+      box-shadow: 
+        0 10px 30px rgba(255, 255, 255, 0.15),
+        0 4px 12px rgba(0, 0, 0, 0.4);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      cursor: pointer;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.9);
+    }
+
+    /* Button Shimmer Effect */
+    .cta-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 60%;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.5) 50%,
+        rgba(255, 255, 255, 0) 100%
+      );
+      transform: skewX(-25deg);
+      animation: btnShimmer 3.5s infinite;
+    }
+
+    @keyframes btnShimmer {
+      0% { left: -100%; }
+      30%, 100% { left: 160%; }
+    }
+
+    .cta-btn:hover {
+      transform: translateY(-2px) scale(1.01);
+      background: #f0f0f0;
+      box-shadow: 
+        0 14px 40px rgba(255, 255, 255, 0.25),
+        0 6px 16px rgba(0, 0, 0, 0.5);
+    }
+
+    .cta-btn:active {
+      transform: translateY(1px) scale(0.99);
+      box-shadow: 0 4px 14px rgba(255, 255, 255, 0.1);
+    }
+
+    .telegram-icon {
+      width: 22px;
+      height: 22px;
+      fill: currentColor;
+      transition: transform 0.25s ease;
+    }
+
+    .cta-btn:hover .telegram-icon {
+      transform: translateX(2px) scale(1.05);
+    }
+
+    /* Trust / Feature Badges */
+    .trust-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin-top: 24px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      width: 100%;
+    }
+
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.45);
+      font-weight: 500;
+    }
+
+    .trust-item svg {
+      width: 14px;
+      height: 14px;
+      stroke: rgba(255, 255, 255, 0.4);
+      stroke-width: 2;
+      fill: none;
+    }
+
+    /* Minimalist Footer */
+    .footer-note {
+      margin-top: 24px;
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.25);
+      letter-spacing: 0.02em;
+      text-align: center;
+      z-index: 1;
+    }
+  </style>
 </head>
-
 <body>
-  <!-- Canvas para partículas de corações flutuantes -->
-  <canvas id="hearts-canvas" aria-hidden="true"></canvas>
 
-  <!-- Luzes de fundo e atmosfera ambient glow -->
-  <div class="ambient-glow ambient-glow-top" aria-hidden="true"></div>
-  <div class="ambient-glow ambient-glow-center" aria-hidden="true"></div>
-  <div class="ambient-glow ambient-glow-bottom" aria-hidden="true"></div>
+  <div class="ambient-glow"></div>
 
-  <!-- Container Principal Mobile-First -->
-  <main class="page-wrapper">
-    <div class="pressel-card">
-
-      <!-- Seção da Foto com Selo Verificado -->
-      <section class="profile-section">
-        <div class="avatar-container">
-          <div class="avatar-glow-ring"></div>
-          <div class="avatar-wrapper">
-            <img 
-              src="cropped_circle_image.png" 
-              alt="Milena" 
-              class="avatar-img" 
-              id="model-image" 
-              loading="eager"
-              onerror="this.onerror=null; this.src='assets/cropped_circle_image.png';"
-            />
-          </div>
-          <!-- Selo Verificado estilo Instagram oficial -->
-          <div class="verified-badge" title="Perfil Verificado" aria-label="Perfil Verificado">
-            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M10.5213 2.62368C11.3147 1.75254 12.6853 1.75254 13.4787 2.62368L14.4989 3.74391C14.8964 4.18042 15.4674 4.41686 16.0537 4.38793L17.5583 4.31371C18.7285 4.25597 19.744 5.27146 19.6863 6.44171L19.6121 7.94627C19.5831 8.5326 19.8196 9.10364 20.2561 9.50106L21.3763 10.5213C22.2475 11.3147 22.2475 12.6853 21.3763 13.4787L20.2561 14.4989C19.8196 14.8964 19.5831 15.4674 19.6121 16.0537L19.6863 17.5583C19.744 18.7285 18.7285 19.744 17.5583 19.6863L16.0537 19.6121C15.4674 19.5831 14.8964 19.8196 14.4989 20.2561L13.4787 21.3763C12.6853 22.2475 11.3147 22.2475 10.5213 21.3763L9.50106 20.2561C9.10364 19.8196 8.5326 19.5831 7.94627 19.6121L6.44171 19.6863C5.27146 19.744 4.25597 18.7285 4.31371 17.5583L4.38793 16.0537C4.41686 15.4674 4.18042 14.8964 3.74391 14.4989L2.62368 13.4787C1.75254 12.6853 1.75254 11.3147 2.62368 10.5213L3.74391 9.50106C4.18042 9.10364 4.41686 8.5326 4.38793 7.94627L4.31371 6.44171C4.25597 5.27146 5.27146 4.25597 6.44171 4.31371L7.94627 4.38793C8.5326 4.41686 9.10364 4.18042 9.50106 3.74391L10.5213 2.62368Z"
-                fill="#0095F6" />
-              <path d="M9.75 12.25L11.5 14L15.25 9.75" stroke="white" stroke-width="2.2" stroke-linecap="round"
-                stroke-linejoin="round" />
-            </svg>
-          </div>
-        </div>
-      </section>
-
-      <!-- Seção de Títulos -->
-      <section class="headline-section">
-        <h1 class="main-title">Milena Brenda</h1>
-        <div class="subtitle-wrapper">
-          <span class="live-dot" aria-hidden="true"></span>
-          <p class="subtitle">Milena está na sua região agora.</p>
-        </div>
-      </section>
-
-      <!-- Seção de Botões CTAs -->
-      <section class="actions-section">
-        <!-- BOTÃO 1 -->
-        <a href="#previas" class="cta-btn cta-btn-primary" id="btn-previas" data-link-action="previas">
-          <span class="btn-shine" aria-hidden="true"></span>
-          <span class="btn-text">GRUPO DE PRÉVIAS</span>
-          <svg class="btn-icon" viewBox="0 0 24 24" width="20" height="20" fill="none"
-            xmlns="http://www.w3.org/2000/svg">
-            <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-              stroke-linejoin="round" />
-          </svg>
-        </a>
-
-        <!-- BOTÃO 2 -->
-        <a href="#exclusivo" class="cta-btn cta-btn-secondary" id="btn-exclusivo" data-link-action="exclusivo">
-          <span class="btn-shine" aria-hidden="true"></span>
-          <span class="btn-text">CONTEÚDO EXCLUSIVO</span>
-          <svg class="btn-icon" viewBox="0 0 24 24" width="20" height="20" fill="none"
-            xmlns="http://www.w3.org/2000/svg">
-            <path
-              d="M12 15V17M6 21H18C19.1046 21 20 20.1046 20 19V11C20 9.89543 19.1046 9 18 9H6C4.89543 9 4 9.89543 4 11V19C4 20.1046 4.89543 21 6 21ZM16 9V7C16 4.79086 14.2091 3 12 3C9.79086 3 8 4.79086 8 7V9H16Z"
-              stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-          </svg>
-        </a>
-      </section>
-
-      <!-- Rodapé / Micro Trust Badge -->
-      <footer class="trust-footer">
-        <div class="secure-badge">
-          <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
-            <path
-              d="M12 1L3 5V11C3 16.55 6.84 21.74 12 23C17.16 21.74 21 16.55 21 11V5L12 1ZM10 16.5L6 12.5L7.41 11.09L10 13.67L16.59 7.08L18 8.5L10 16.5Z" />
-          </svg>
-          <span>Ambiente Seguro & Conexão Criptografada</span>
-        </div>
-      </footer>
-
+  <main class="presell-card">
+    
+    <!-- Profile Icon -->
+    <div class="avatar-wrapper">
+      <div class="avatar-glow"></div>
+      <img src="profile.png" alt="Foto de perfil - Grupo das casadas" class="avatar-img" onerror="this.onerror=null; this.src='Emblema%20Dourado%20do%20Espad%C3%A3o.png';">
+      <div class="status-badge" title="Online agora"></div>
     </div>
+
+    <!-- Exclusive Tag -->
+    <div class="exclusive-tag">
+      <span class="tag-dot"></span>
+      Acesso Exclusivo &bull; Oficial
+    </div>
+
+    <!-- Title Head -->
+    <h1 class="group-title">
+      Grupo das casadas
+      <!-- Verified Badge SVG -->
+      <svg class="verified-icon" viewBox="0 0 24 24" aria-label="Verificado">
+        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1.2 14.2l-3.5-3.5 1.41-1.41 2.09 2.08 5.69-5.69 1.41 1.41-7.1 7.11z"/>
+      </svg>
+    </h1>
+
+    <!-- Subtitle / Hook -->
+    <p class="group-subtitle">
+      Acesso reservado via Telegram. Toque abaixo para entrar diretamente no grupo agora mesmo.
+    </p>
+
+    <!-- Call to Action Button -->
+    <a href="https://t.me/iobresposasbot?start=aline" class="cta-btn" id="ctaBtn" rel="noopener noreferrer">
+      <!-- Telegram SVG Icon -->
+      <svg class="telegram-icon" viewBox="0 0 24 24">
+        <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.121l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.458c.538-.196 1.006.128.832.94z"/>
+      </svg>
+      <span>Participe do grupo</span>
+    </a>
+
+    <!-- Trust Badges -->
+    <div class="trust-container">
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+        </svg>
+        Link Seguro
+      </div>
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+        </svg>
+        Entrada Imediata
+      </div>
+      <div class="trust-item">
+        <svg viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+        </svg>
+        100% Verificado
+      </div>
+    </div>
+
   </main>
 
-  <!-- Script JS com Sistema de Partículas e Efeitos -->
-  <script src="script.js"></script>
-</body>
+  <footer class="footer-note">
+    &copy; 2026 Grupo das casadas &bull; Todos os direitos reservados.
+  </footer>
 
+</body>
 </html>
+
